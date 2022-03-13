@@ -1,5 +1,5 @@
 <template>
-    <div class="container" id="footer">
+    <div class="container mt-5" id="footer">
         <p>Copyright @ {{ currentDate }}</p>
     </div>
 </template>

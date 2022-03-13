@@ -1,0 +1,24 @@
+Project: CRUD with VUEJS2
+
+                        - GuideLines -
+
+Register
+
+Login
+
+Admin Access
+
+Articles:
+    create
+    edit
+    display
+    showOne
+
+
+techs:
+mask js regex
+typescript
+
+
+test: jest
+

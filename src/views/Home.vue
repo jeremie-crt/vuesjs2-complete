@@ -15,11 +15,11 @@ import { SET_NICKNAME } from "@/store/modules/actions.type";
 export default {
     name: 'Homepage',
     props: {
-        msg: String
+        msg: { type: String, required: false, default: 'Welcome on the VueJs project!!'}
     },
     computed: {
         ...mapGetters({
-            nickname: "getNickname"
+            nickname: 'getNickname'
         })
     },
     data() {

@@ -10,7 +10,7 @@ let contentraw = "ERROR 404 - No content exists here"
 
 
 export default {
-    name: 'About',
+    name: 'Error',
     props: {
         text: {type: String, required: false, default: contentraw}
     }

@@ -3,10 +3,10 @@ import { SET_NICKNAME } from "./actions.type";
 
 const userModule = {
     state: {
-        time: 'TODAY IS SATURDAY',
+        time: (new Date),
         user: {
-            nickname: 'bob',
-            email: 'bob@live.fr',
+            nickname: '',
+            email: '',
             password: ''
         }
     },
