@@ -1,1 +1,3 @@
 export const EDIT_NICKNAME = 'EDIT_NICKNAME'
+export const EDIT_EMAIL = 'EDIT_EMAIL'
+export const EDIT_PASSWORD = 'EDIT_PASSWORD'

@@ -33,7 +33,5 @@ export default {
         },
         ...mapActions([SET_NICKNAME])
     }
-
 }
 </script>
-

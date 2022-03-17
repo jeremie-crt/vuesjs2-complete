@@ -16,6 +16,9 @@ Articles:
 
 
 techs:
+https://github.com/vuelidate/vuelidate
+https://codesandbox.io/s/r0lkrn4wxo?file=/app/App.vue
+firebase
 mask js regex
 typescript
 
