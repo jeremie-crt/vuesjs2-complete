@@ -1,5 +1,5 @@
-import {EDIT_PASSWORD, EDIT_NICKNAME, EDIT_EMAIL} from "./mutations.type";
-import {SET_EMAIL, SET_NICKNAME, SET_PASSWORD} from "./actions.type";
+import { SET_NICKNAME, SET_EMAIL, SET_PASSWORD } from "./mutations.type";
+import { EDIT_EMAIL, EDIT_NICKNAME, EDIT_PASSWORD } from "./actions.type";
 
 const userModule = {
     state: {
@@ -18,26 +18,26 @@ const userModule = {
     },
 
     mutations: {
-        [EDIT_NICKNAME]: (state, value) => {
+        [SET_NICKNAME]: (state, value) => {
             state.user.nickname = value
         },
-        [EDIT_EMAIL]: (state, value) => {
+        [SET_EMAIL]: (state, value) => {
             state.user.email = value
         },
-        [EDIT_PASSWORD]: (state, value) => {
+        [SET_PASSWORD]: (state, value) => {
             state.user.password = value
         }
     },
 
     actions: {
-        [SET_NICKNAME](context, value) {
-            context.commit('EDIT_NICKNAME', value)
+        [EDIT_NICKNAME](context, value) {
+            context.commit(SET_NICKNAME, value)
         },
-        [SET_EMAIL](context, value) {
-            context.commit('EDIT_EMAIL', value)
+        [EDIT_EMAIL](context, value) {
+            context.commit(SET_EMAIL, value)
         },
-        [SET_PASSWORD](context, value) {
-            context.commit('EDIT_PASSWORD', value)
+        [EDIT_PASSWORD](context, value) {
+            context.commit(SET_PASSWORD, value)
         }
     },
 }

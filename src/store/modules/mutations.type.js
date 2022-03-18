@@ -1,3 +1,9 @@
-export const EDIT_NICKNAME = 'EDIT_NICKNAME'
-export const EDIT_EMAIL = 'EDIT_EMAIL'
-export const EDIT_PASSWORD = 'EDIT_PASSWORD'
+// USER MODULE
+export const SET_NICKNAME = 'setNickName'
+export const SET_EMAIL = 'setEmail'
+export const SET_PASSWORD = 'setPassword'
+
+//AUTH MODULE
+export const SET_CURRENTUSER = 'setCurrentUser'
+export const SET_AUTH_ERRORS = 'setAuthErrors'
+export const SET_IS_LOGGED = 'setIsLogged'

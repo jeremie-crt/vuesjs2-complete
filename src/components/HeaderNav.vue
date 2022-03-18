@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container mb-4">
         <nav class="nav justify-content-between" id="header-nav">
             <ul class="list-group list-group-horizontal">
                 <li class="list-group-item">

@@ -57,9 +57,9 @@
 </template>
 
 <script>
+import {mapActions, mapGetters} from 'vuex'
+import {CREATE_NEW_USER} from "@/store/modules/actions.type";
 import Validator from '@/utils/validate';
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { firebaseAuth } from '@/services/firebase/firebase';
 import FormErrors from '@/components/FormErrors';
 
 export default {
@@ -77,7 +77,7 @@ export default {
         }
     },
     methods: {
-        formSubmit() {
+        async formSubmit() {
             this.errors = [];
 
             if (!this.username) {
@@ -93,36 +93,42 @@ export default {
                 this.errors.push('Passwords must match')
             }
             if (this.errors.length > 0) {
-                return true;
+                return false;
             }
 
-            this.createUser();
-
+            let save = await this.saveUser();
+            console.log('this.getAuthErrors');
+            this.cleanState();
+            if(save) {
+                console.log('goodddddddddd');
+            } else {
+                console.log('FALSEEE');
+                console.log(this.getAuthErrors);
+                this.errors.push(this.getAuthErrors)
+                return false;
+            }
         },
         cleanState() {
             this.email = ''
             this.password = ''
             this.confirmPwd = ''
         },
-        createUser: function() {
-            createUserWithEmailAndPassword(firebaseAuth, this.email, this.password)
-                .then((userCredential) => {
-                    // Signed in
-                    const user = userCredential.user;
-                    console.dir(userCredential);
-                    console.dir(user);
-                })
-                .catch((error) => {
-                    if(error.code === 'auth/invalid-email' ||
-                        error.code === 'auth/email-already-in-use'
-                    ) {
-                        this.errors.push('Credentials are not correct');
-                        this.cleanState()
-                    }
-                });
-        }
+        async saveUser() {
+            console.log('this.saveUser');
+            let query = await this.$store.dispatch(CREATE_NEW_USER, {
+                email: this.email, password: this.password
+            })
+            console.log('query', query);
+            return query
+        },
+        ...mapActions([
+            CREATE_NEW_USER
+        ]),
     },
     computed: {
+        ...mapGetters([
+            'getAuthErrors'
+        ])
     }
 }
 </script>

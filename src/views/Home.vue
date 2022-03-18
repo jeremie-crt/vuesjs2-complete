@@ -10,7 +10,7 @@
 
 <script>
 import {  mapGetters, mapActions } from 'vuex'
-import { SET_NICKNAME } from "@/store/modules/actions.type";
+import { EDIT_NICKNAME } from "@/store/modules/actions.type";
 
 export default {
     name: 'Homepage',
@@ -29,9 +29,9 @@ export default {
     },
     methods: {
         updateNickname(event) {
-            this.$store.dispatch(SET_NICKNAME, event.target.value)
+            this.$store.dispatch(EDIT_NICKNAME, event.target.value)
         },
-        ...mapActions([SET_NICKNAME])
+        ...mapActions([EDIT_NICKNAME])
     }
 }
 </script>
