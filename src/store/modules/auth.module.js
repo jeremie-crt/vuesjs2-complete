@@ -45,13 +45,18 @@ const authModule = {
                 .then((userCredential) => {
                     commit(SET_CURRENTUSER, userCredential.user)
                     commit(SET_IS_LOGGED, true)
+                    setTimeout(()=> {
+                        console.log('WAIT FOR A MOMENT');
+                    }, 2000)
                     return true;
                 })
                 .catch((error) => {
-                    if(error.code === 'auth/invalid-email' ||
-                        error.code === 'auth/email-already-in-use'
-                    ) {
+                    if(error.code === 'auth/invalid-email') {
                         commit(SET_AUTH_ERRORS, 'Credentials are not correct')
+                        return false;
+                    }
+                    if(error.code === 'auth/email-already-in-use') {
+                        commit(SET_AUTH_ERRORS, 'Email is already used')
                         return false;
                     }
                 });

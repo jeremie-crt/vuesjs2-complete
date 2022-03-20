@@ -17,10 +17,10 @@
             </ul>
             <ul class="list-group list-group-horizontal">
                 <li class="list-group-item">
-                  <router-link :to="{ name: 'register' }">REGISTER</router-link>
+                  <router-link :to="{ name: 'register' }">SIGN UP</router-link>
                 </li>
                 <li class="list-group-item">
-                  <router-link :to="{ name: 'login' }">LOGIN</router-link>
+                  <router-link :to="{ name: 'login' }">SIGN IN</router-link>
                 </li>
                 <li class="list-group-item">
                   <router-link :to="{ name: 'logout' }">LOGOUT</router-link>

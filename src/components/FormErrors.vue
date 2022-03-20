@@ -13,7 +13,7 @@
 export default {
     name: "FormErrors",
     props: {
-        errors: { type: [], default: []}
+        errors: { type: Array, default: Array}
     }
 }
 </script>
