@@ -28,17 +28,17 @@ const routes = [
   {
     path: '/register',
     name: 'register',
-    component: () => import('../views/Register.vue')
+    component: () => import('../views/SignUp.vue')
   },
   {
     path: '/login',
     name: 'login',
-    component: () => import('../views/Login.vue')
+    component: () => import('../views/SignIn.vue')
   },
   {
     path: '/logout',
     name: 'logout',
-    component: () => import('../components/Logout.vue')
+    component: () => import('../components/SignOut.vue')
   },
   {
     path: '*',

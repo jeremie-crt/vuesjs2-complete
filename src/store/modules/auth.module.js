@@ -1,7 +1,13 @@
 import { firebaseAuth } from '@/services/firebase/firebase';
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
 import {SET_AUTH_ERRORS, SET_CURRENTUSER, SET_IS_LOGGED} from "@/store/modules/mutations.type";
-import {CREATE_NEW_USER, EDIT_AUTH_ERRORS, EDIT_CURRENTUSER, EDIT_IS_LOGGED} from "@/store/modules/actions.type";
+import {
+    CREATE_NEW_USER,
+    EDIT_AUTH_ERRORS,
+    EDIT_CURRENTUSER,
+    EDIT_IS_LOGGED, GET_AUTH_STATUS, SIGN_OUT_USER,
+    SIGNIN_USER
+} from "@/store/modules/actions.type";
 
 const authModule = {
     state: {
@@ -38,16 +44,12 @@ const authModule = {
         [EDIT_IS_LOGGED](context, payload) {
             context.commit(SET_IS_LOGGED, payload)
         },
+
         [CREATE_NEW_USER]({ commit }, payload) {
             const { email, password } = payload;
 
             return createUserWithEmailAndPassword(firebaseAuth, email, password)
-                .then((userCredential) => {
-                    commit(SET_CURRENTUSER, userCredential.user)
-                    commit(SET_IS_LOGGED, true)
-                    setTimeout(()=> {
-                        console.log('WAIT FOR A MOMENT');
-                    }, 2000)
+                .then(() => {
                     return true;
                 })
                 .catch((error) => {
@@ -60,6 +62,52 @@ const authModule = {
                         return false;
                     }
                 });
+        },
+
+        [SIGNIN_USER]({ commit }, payload) {
+            const { email, password } = payload;
+
+            return signInWithEmailAndPassword(firebaseAuth, email, password)
+                .then((userCredential) => {
+                    const { uid, email } = userCredential.user;
+                    commit(SET_CURRENTUSER, { id: uid, email: email })
+                    commit(SET_IS_LOGGED, true)
+                    return true;
+                })
+                .catch((error) => {
+                    if(error.code === 'auth/user-not-found') {
+                        commit(SET_AUTH_ERRORS, 'Credentials are not correct')
+                        return false;
+                    }
+                });
+        },
+
+        [SIGN_OUT_USER]({ commit }) {
+            return signOut(firebaseAuth).then(() => {
+                commit(SET_CURRENTUSER, {})
+                commit(SET_IS_LOGGED, false)
+                return true;
+            }).catch(() => {
+                commit(SET_AUTH_ERRORS, 'Signout has failed')
+                return false;
+            });
+        },
+
+        [GET_AUTH_STATUS]({ commit }) {
+            return onAuthStateChanged(firebaseAuth, (user) => {
+                if (user) {
+                    // User is signed in, see docs for a list of available properties
+                    // https://firebase.google.com/docs/reference/js/firebase.User
+                    const { uid, email } = user;
+                    commit(SET_CURRENTUSER, { id: uid, email: email })
+                    commit(SET_IS_LOGGED, true)
+                    return true;
+                } else {
+                    commit(SET_CURRENTUSER, {})
+                    commit(SET_IS_LOGGED, false)
+                    return false;
+                }
+            });
         }
     },
 }

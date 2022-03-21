@@ -1,6 +1,6 @@
 <template>
     <div class="container mb-4">
-        <nav class="nav justify-content-between" id="header-nav">
+        <nav class="nav justify-content-between mb-1" id="header-nav">
             <ul class="list-group list-group-horizontal">
                 <li class="list-group-item">
                   <router-link :to="{ name: 'home' }">HOME</router-link>
@@ -16,13 +16,13 @@
                 </li>
             </ul>
             <ul class="list-group list-group-horizontal">
-                <li class="list-group-item">
+                <li v-if="!isLoggedIn" class="list-group-item">
                   <router-link :to="{ name: 'register' }">SIGN UP</router-link>
                 </li>
-                <li class="list-group-item">
+                <li v-if="!isLoggedIn" class="list-group-item">
                   <router-link :to="{ name: 'login' }">SIGN IN</router-link>
                 </li>
-                <li class="list-group-item">
+                <li v-if="isLoggedIn" class="list-group-item">
                   <router-link :to="{ name: 'logout' }">LOGOUT</router-link>
                 </li>
             </ul>
@@ -34,6 +34,11 @@
 <script>
 export default {
     name: 'HeaderNav',
+    computed: {
+        isLoggedIn: function() {
+            return this.$store.getters.getIsLogged
+        }
+    }
 }
 </script>
 
