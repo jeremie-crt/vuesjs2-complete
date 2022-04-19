@@ -10,7 +10,7 @@
 
 <script>
 import {  mapGetters, mapActions } from 'vuex'
-import { EDIT_NICKNAME } from "@/store/modules/actions.type";
+import {EDIT_NICKNAME, GET_AUTH_STATUS} from "@/store/modules/actions.type";
 
 export default {
     name: 'Homepage',
@@ -32,6 +32,9 @@ export default {
             this.$store.dispatch(EDIT_NICKNAME, event.target.value)
         },
         ...mapActions([EDIT_NICKNAME])
+    },
+    beforeCreate() {
+        this.$store.dispatch(GET_AUTH_STATUS)
     }
 }
 </script>

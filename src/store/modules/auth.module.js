@@ -1,10 +1,10 @@
 import { firebaseAuth } from '@/services/firebase/firebase';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
-import {SET_AUTH_ERRORS, SET_CURRENTUSER, SET_IS_LOGGED} from "@/store/modules/mutations.type";
+import {SET_AUTH_ERRORS, SET_CURRENT_USER, SET_IS_LOGGED} from "@/store/modules/mutations.type";
 import {
     CREATE_NEW_USER,
     EDIT_AUTH_ERRORS,
-    EDIT_CURRENTUSER,
+    EDIT_CURRENT_USER,
     EDIT_IS_LOGGED, GET_AUTH_STATUS, SIGN_OUT_USER,
     SIGNIN_USER
 } from "@/store/modules/actions.type";
@@ -23,7 +23,7 @@ const authModule = {
     },
 
     mutations: {
-        [SET_CURRENTUSER]: (state, value) => {
+        [SET_CURRENT_USER]: (state, value) => {
             state.currentUser = value
         },
         [SET_AUTH_ERRORS]: (state, value) => {
@@ -35,8 +35,8 @@ const authModule = {
     },
 
     actions: {
-        [EDIT_CURRENTUSER](context, payload) {
-            context.commit(SET_CURRENTUSER, payload)
+        [EDIT_CURRENT_USER](context, payload) {
+            context.commit(SET_CURRENT_USER, payload)
         },
         [EDIT_AUTH_ERRORS](context, payload) {
             context.commit(SET_AUTH_ERRORS, payload)
@@ -70,7 +70,7 @@ const authModule = {
             return signInWithEmailAndPassword(firebaseAuth, email, password)
                 .then((userCredential) => {
                     const { uid, email } = userCredential.user;
-                    commit(SET_CURRENTUSER, { id: uid, email: email })
+                    commit(SET_CURRENT_USER, { id: uid, email: email })
                     commit(SET_IS_LOGGED, true)
                     return true;
                 })
@@ -84,7 +84,7 @@ const authModule = {
 
         [SIGN_OUT_USER]({ commit }) {
             return signOut(firebaseAuth).then(() => {
-                commit(SET_CURRENTUSER, {})
+                commit(SET_CURRENT_USER, {})
                 commit(SET_IS_LOGGED, false)
                 return true;
             }).catch(() => {
@@ -99,11 +99,11 @@ const authModule = {
                     // User is signed in, see docs for a list of available properties
                     // https://firebase.google.com/docs/reference/js/firebase.User
                     const { uid, email } = user;
-                    commit(SET_CURRENTUSER, { id: uid, email: email })
+                    commit(SET_CURRENT_USER, { id: uid, email: email })
                     commit(SET_IS_LOGGED, true)
                     return true;
                 } else {
-                    commit(SET_CURRENTUSER, {})
+                    commit(SET_CURRENT_USER, {})
                     commit(SET_IS_LOGGED, false)
                     return false;
                 }

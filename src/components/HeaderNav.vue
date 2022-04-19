@@ -9,7 +9,7 @@
                   <router-link :to="{ name: 'articles' }">ARTICLES</router-link>
                 </li>
                 <li class="list-group-item">
-                  <router-link :to="{ name: 'profile' }">PROFIL</router-link>
+                  <router-link :to="{ name: 'profile' }">PROFILE</router-link>
                 </li>
                 <li class="list-group-item">
                     <router-link :to="{ name: 'about' }">ABOUT</router-link>

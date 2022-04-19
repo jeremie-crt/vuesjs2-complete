@@ -2,9 +2,11 @@ Project: CRUD with VUEJS2
 
                         - GuideLines -
 
-Register
+Register !!!!!!!!!
+Login !!!!!!!!!
+Logout !!!!!!!!!
 
-Login
+Profile: info user - display created articles
 
 Admin Access
 
@@ -18,7 +20,7 @@ Articles:
 techs:
 https://github.com/vuelidate/vuelidate
 https://codesandbox.io/s/r0lkrn4wxo?file=/app/App.vue
-firebase
+firebase !!!
 mask js regex
 typescript
 

@@ -53,7 +53,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import {SIGNIN_USER} from "@/store/modules/actions.type";
+import { SIGNIN_USER } from "@/store/modules/actions.type";
 import Validator from '@/utils/validate';
 import FormErrors from '@/components/FormErrors';
 import Spinner from "@/components/Spinner";
